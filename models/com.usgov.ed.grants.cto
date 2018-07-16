@@ -1,0 +1,143 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Write your model definitions here
+ */
+
+namespace com.usgov.ed.grants
+
+//Concepts
+
+concept Obligation {
+  o String granteeId
+  o Long allottedAmount
+}
+
+//Participants
+/**
+* A User base class
+*/
+abstract participant User identified by userId {
+  o String userId
+  o String pocName
+  o String pocEmail
+}
+
+/**
+* An Education participant
+*/
+participant Education extends User{
+
+}
+
+/**
+* A Treasury participant
+*/
+participant Treasury extends User{
+
+}
+
+/**
+* A Grantee participant
+*/
+participant Grantee extends User {
+  o Long grantBalance optional
+  o Integer numActionReqs
+}
+
+participant program1grantee extends Grantee {
+}
+
+participant program2grantee extends Grantee {
+}
+
+// Assets
+asset ActionRequest identified by requestId {
+  o String requestId
+  o Long requestValue
+  --> Grantee owner
+  o Grantee[] assignedValidators
+  o Grantee[] approvedValidators
+  o Boolean treasuryValidator
+}
+
+// transactions
+
+transaction SetUpDemo{
+  o Long grantBalance
+}
+
+transaction CreateGrantee {
+  o String granteeId
+  // o String granteeName
+  o Long grantBalance optional
+  o String pocName
+  o String pocEmail
+}
+
+transaction CreateEdUser{
+  o String userId
+  o String pocName
+  o String pocEmail
+}
+
+transaction CreateTreasury{
+  o String userId
+  o String pocName
+  o String pocEmail
+}
+
+transaction ImportGrantee {
+  o String granteeId
+  // o String granteeName
+  o Long grantBalance optional
+  o String pocName
+  o String pocEmail
+}
+
+transaction ObligateSlate {
+  o Obligation[] slate
+}
+
+transaction CreateActionRequest{
+  o Long requestValue
+  o Integer validators
+  --> Grantee requestor
+}
+
+transaction VerifyActionRequest {
+}
+
+transaction ApproveActionRequest {
+}
+
+// events
+
+event NotifyDisbursement{
+
+}
+
+event NotifyApprovers {
+  o String verifierid
+  --> ActionRequest req
+}
+
+event NotifyTreasury{
+  --> ActionRequest req
+}
+
+event ActionRequestMade{
+  --> ActionRequest req
+}
