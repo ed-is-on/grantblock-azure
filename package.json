@@ -3,7 +3,7 @@
     "composer": "^0.19.10"
   },
   "name": "dev-edgrants-network",
-  "version": "0.0.14",
+  "version": "0.0.19",
   "description": "Dev network for Ed Grants Blockchain poc",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/dev-edgrants-network.bna",

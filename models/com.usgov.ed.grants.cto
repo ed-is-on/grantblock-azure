@@ -39,7 +39,7 @@ abstract participant User identified by userId {
 * An Education participant
 */
 participant Education extends User{
-
+  
 }
 
 /**
