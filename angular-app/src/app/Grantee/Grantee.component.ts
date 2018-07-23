@@ -60,6 +60,7 @@ export class GranteeComponent implements OnInit {
     return this.serviceGrantee.getAll()
     .toPromise()
     .then((result) => {
+      console.log(result);
       this.errorMessage = null;
       result.forEach(participant => {
         tempList.push(participant);
