@@ -25,6 +25,17 @@ concept Obligation {
   o Long allottedAmount
 }
 
+// Enums
+
+enum RequestStatus{
+  o INITIALIZED // the initial request has been created by the Grantee
+  o VALIDATORS_SELECTED // validators have been selected for the request
+  o VALIDATION_IN_PROGRESS // one or more of the validators have approved, but not all of them
+  o APPROVED // all validators have approved and the request is waiting on Treasury
+  o ADJUDICATED // Treasury has approved the request
+  o REJECTED // if at any point something is rejected, the overall status changes to rejected
+}
+
 //Participants
 /**
 * A User base class
@@ -54,23 +65,19 @@ participant Treasury extends User{
 */
 participant Grantee extends User {
   o Long grantBalance optional
-  o Integer numActionReqs
-}
-
-participant program1grantee extends Grantee {
-}
-
-participant program2grantee extends Grantee {
 }
 
 // Assets
 asset ActionRequest identified by requestId {
   o String requestId
+  o RequestStatus status
+  o String createdDate
   o Long requestValue
   --> Grantee owner
   o Grantee[] assignedValidators
   o Grantee[] approvedValidators
   o Boolean treasuryValidator
+  o String receiptImage optional // the link or pointer/hash for the receipt
 }
 
 // transactions
@@ -80,8 +87,7 @@ transaction SetUpDemo{
 }
 
 transaction CreateGrantee {
-  o String granteeId
-  // o String granteeName
+  o String userId
   o Long grantBalance optional
   o String pocName
   o String pocEmail
@@ -100,9 +106,8 @@ transaction CreateTreasury{
 }
 
 transaction ImportGrantee {
-  o String granteeId
-  // o String granteeName
-  o Long grantBalance optional
+  o String userId
+  o Long grantBalance
   o String pocName
   o String pocEmail
 }
@@ -113,25 +118,46 @@ transaction ObligateSlate {
 
 transaction CreateActionRequest{
   o Long requestValue
-  o Integer validators
   --> Grantee requestor
+}
+
+transaction AddValidatingGrantees{
+  o Integer validators
+  --> ActionRequest request
+  --> Grantee arOwner
+}
+
+transaction ApproveActionRequest{
+  o Boolean approve
+  --> Grantee approver
+  --> ActionRequest request
+  --> Grantee arOwner
 }
 
 transaction VerifyActionRequest {
 }
 
-transaction ApproveActionRequest {
+// events
+
+event NotifyValidators{
+  --> ActionRequest request
 }
 
-// events
+event NotifyRequestFailure{
+  --> ActionRequest request
+}
+
+event NotifyRequestSuccess{
+  --> ActionRequest request
+}
 
 event NotifyDisbursement{
 
 }
 
 event NotifyApprovers {
-  o String verifierid
   --> ActionRequest req
+  o String verifierid
 }
 
 event NotifyTreasury{
