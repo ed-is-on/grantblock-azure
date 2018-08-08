@@ -71,7 +71,7 @@ participant Grantee extends User {
 asset ActionRequest identified by requestId {
   o String requestId
   o RequestStatus status
-  o String createdDate
+  o String createdDate optional
   o Long requestValue
   --> Grantee owner
   o Grantee[] assignedValidators
@@ -124,14 +124,12 @@ transaction CreateActionRequest{
 transaction AddValidatingGrantees{
   o Integer validators
   --> ActionRequest request
-  --> Grantee arOwner
 }
 
 transaction ApproveActionRequest{
   o Boolean approve
   --> Grantee approver
   --> ActionRequest request
-  --> Grantee arOwner
 }
 
 transaction VerifyActionRequest {
