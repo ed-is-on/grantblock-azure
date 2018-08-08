@@ -22,18 +22,17 @@ import { ActionRequestComponent } from './ActionRequest/ActionRequest.component'
 import { EducationComponent } from './Education/Education.component';
 import { TreasuryComponent } from './Treasury/Treasury.component';
 import { GranteeComponent } from './Grantee/Grantee.component';
-import { program1granteeComponent } from './program1grantee/program1grantee.component';
-import { program2granteeComponent } from './program2grantee/program2grantee.component';
 
+import { SetUpDemoComponent } from './SetUpDemo/SetUpDemo.component';
 import { CreateGranteeComponent } from './CreateGrantee/CreateGrantee.component';
 import { CreateEdUserComponent } from './CreateEdUser/CreateEdUser.component';
 import { CreateTreasuryComponent } from './CreateTreasury/CreateTreasury.component';
 import { ImportGranteeComponent } from './ImportGrantee/ImportGrantee.component';
 import { ObligateSlateComponent } from './ObligateSlate/ObligateSlate.component';
 import { CreateActionRequestComponent } from './CreateActionRequest/CreateActionRequest.component';
-import { VerifyActionRequestComponent } from './VerifyActionRequest/VerifyActionRequest.component';
+import { AddValidatingGranteesComponent } from './AddValidatingGrantees/AddValidatingGrantees.component';
 import { ApproveActionRequestComponent } from './ApproveActionRequest/ApproveActionRequest.component';
-import { SetUpDemoComponent } from './SetUpDemo/SetUpDemo.component';
+import { VerifyActionRequestComponent } from './VerifyActionRequest/VerifyActionRequest.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,17 +40,16 @@ const routes: Routes = [
   { path: 'Education', component: EducationComponent },
   { path: 'Treasury', component: TreasuryComponent },
   { path: 'Grantee', component: GranteeComponent },
-  { path: 'program1grantee', component: program1granteeComponent },
-  { path: 'program2grantee', component: program2granteeComponent },
+  { path: 'SetUpDemo', component: SetUpDemoComponent },
   { path: 'CreateGrantee', component: CreateGranteeComponent },
   { path: 'CreateEdUser', component: CreateEdUserComponent },
   { path: 'CreateTreasury', component: CreateTreasuryComponent },
   { path: 'ImportGrantee', component: ImportGranteeComponent },
   { path: 'ObligateSlate', component: ObligateSlateComponent },
   { path: 'CreateActionRequest', component: CreateActionRequestComponent },
-  { path: 'VerifyActionRequest', component: VerifyActionRequestComponent },
+  { path: 'AddValidatingGrantees', component: AddValidatingGranteesComponent },
   { path: 'ApproveActionRequest', component: ApproveActionRequestComponent },
-  { path: 'SetUpDemo', component: SetUpDemoComponent },
+  { path: 'VerifyActionRequest', component: VerifyActionRequestComponent },
   { path: '**', redirectTo: '' }
 ];
 

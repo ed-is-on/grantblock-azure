@@ -33,20 +33,26 @@ export class ActionRequestComponent implements OnInit {
   private errorMessage;
 
   requestId = new FormControl('', Validators.required);
+  status = new FormControl('', Validators.required);
+  createdDate = new FormControl('', Validators.required);
   requestValue = new FormControl('', Validators.required);
   owner = new FormControl('', Validators.required);
   assignedValidators = new FormControl('', Validators.required);
   approvedValidators = new FormControl('', Validators.required);
   treasuryValidator = new FormControl('', Validators.required);
+  receiptImage = new FormControl('', Validators.required);
 
   constructor(private serviceActionRequest: ActionRequestService, fb: FormBuilder) {
     this.myForm = fb.group({
       requestId: this.requestId,
+      status: this.status,
+      createdDate: this.createdDate,
       requestValue: this.requestValue,
       owner: this.owner,
       assignedValidators: this.assignedValidators,
       approvedValidators: this.approvedValidators,
-      treasuryValidator: this.treasuryValidator
+      treasuryValidator: this.treasuryValidator,
+      receiptImage: this.receiptImage
     });
   };
 
@@ -105,20 +111,26 @@ export class ActionRequestComponent implements OnInit {
     this.asset = {
       $class: 'com.usgov.ed.grants.ActionRequest',
       'requestId': this.requestId.value,
+      'status': this.status.value,
+      'createdDate': this.createdDate.value,
       'requestValue': this.requestValue.value,
       'owner': this.owner.value,
       'assignedValidators': this.assignedValidators.value,
       'approvedValidators': this.approvedValidators.value,
-      'treasuryValidator': this.treasuryValidator.value
+      'treasuryValidator': this.treasuryValidator.value,
+      'receiptImage': this.receiptImage.value
     };
 
     this.myForm.setValue({
       'requestId': null,
+      'status': null,
+      'createdDate': null,
       'requestValue': null,
       'owner': null,
       'assignedValidators': null,
       'approvedValidators': null,
-      'treasuryValidator': null
+      'treasuryValidator': null,
+      'receiptImage': null
     });
 
     return this.serviceActionRequest.addAsset(this.asset)
@@ -127,11 +139,14 @@ export class ActionRequestComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'requestId': null,
+        'status': null,
+        'createdDate': null,
         'requestValue': null,
         'owner': null,
         'assignedValidators': null,
         'approvedValidators': null,
-        'treasuryValidator': null
+        'treasuryValidator': null,
+        'receiptImage': null
       });
     })
     .catch((error) => {
@@ -147,11 +162,14 @@ export class ActionRequestComponent implements OnInit {
   updateAsset(form: any): Promise<any> {
     this.asset = {
       $class: 'com.usgov.ed.grants.ActionRequest',
+      'status': this.status.value,
+      'createdDate': this.createdDate.value,
       'requestValue': this.requestValue.value,
       'owner': this.owner.value,
       'assignedValidators': this.assignedValidators.value,
       'approvedValidators': this.approvedValidators.value,
-      'treasuryValidator': this.treasuryValidator.value
+      'treasuryValidator': this.treasuryValidator.value,
+      'receiptImage': this.receiptImage.value
     };
 
     return this.serviceActionRequest.updateAsset(form.get('requestId').value, this.asset)
@@ -201,17 +219,32 @@ export class ActionRequestComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'requestId': null,
+        'status': null,
+        'createdDate': null,
         'requestValue': null,
         'owner': null,
         'assignedValidators': null,
         'approvedValidators': null,
-        'treasuryValidator': null
+        'treasuryValidator': null,
+        'receiptImage': null
       };
 
       if (result.requestId) {
         formObject.requestId = result.requestId;
       } else {
         formObject.requestId = null;
+      }
+
+      if (result.status) {
+        formObject.status = result.status;
+      } else {
+        formObject.status = null;
+      }
+
+      if (result.createdDate) {
+        formObject.createdDate = result.createdDate;
+      } else {
+        formObject.createdDate = null;
       }
 
       if (result.requestValue) {
@@ -244,6 +277,12 @@ export class ActionRequestComponent implements OnInit {
         formObject.treasuryValidator = null;
       }
 
+      if (result.receiptImage) {
+        formObject.receiptImage = result.receiptImage;
+      } else {
+        formObject.receiptImage = null;
+      }
+
       this.myForm.setValue(formObject);
 
     })
@@ -261,11 +300,14 @@ export class ActionRequestComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'requestId': null,
+      'status': null,
+      'createdDate': null,
       'requestValue': null,
       'owner': null,
       'assignedValidators': null,
       'approvedValidators': null,
-      'treasuryValidator': null
+      'treasuryValidator': null,
+      'receiptImage': null
       });
   }
 

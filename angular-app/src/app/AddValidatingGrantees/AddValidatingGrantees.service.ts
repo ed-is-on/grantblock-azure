@@ -15,36 +15,37 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs/Observable';
-import { program1grantee } from '../com.usgov.ed.grants';
+import { AddValidatingGrantees } from '../com.usgov.ed.grants';
 import 'rxjs/Rx';
 
 // Can be injected into a constructor
 @Injectable()
-export class program1granteeService {
+export class AddValidatingGranteesService {
 
-  private NAMESPACE = 'program1grantee';
+  private NAMESPACE = 'AddValidatingGrantees';
 
-  constructor(private dataService: DataService<program1grantee>) {
+  constructor(private dataService: DataService<AddValidatingGrantees>) {
   };
 
-  public getAll(): Observable<program1grantee[]> {
-    return this.dataService.getAll(this.NAMESPACE);
+  public getAll(): Observable<AddValidatingGrantees[]> {
+      return this.dataService.getAll(this.NAMESPACE);
   }
 
-  public getparticipant(id: any): Observable<program1grantee> {
+  public getTransaction(id: any): Observable<AddValidatingGrantees> {
     return this.dataService.getSingle(this.NAMESPACE, id);
   }
 
-  public addParticipant(itemToAdd: any): Observable<program1grantee> {
+  public addTransaction(itemToAdd: any): Observable<AddValidatingGrantees> {
     return this.dataService.add(this.NAMESPACE, itemToAdd);
   }
 
-  public updateParticipant(id: any, itemToUpdate: any): Observable<program1grantee> {
+  public updateTransaction(id: any, itemToUpdate: any): Observable<AddValidatingGrantees> {
     return this.dataService.update(this.NAMESPACE, id, itemToUpdate);
   }
 
-  public deleteParticipant(id: any): Observable<program1grantee> {
+  public deleteTransaction(id: any): Observable<AddValidatingGrantees> {
     return this.dataService.delete(this.NAMESPACE, id);
   }
 
 }
+

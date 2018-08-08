@@ -14,18 +14,10 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <p class="network-name">dev-edgrants-network@0.0.1.bna</p>
+        <p class="network-name">dev-edgrants-network@0.0.58.bna</p>
         <p class="navbar-brand">angular-app</p>
       </div>
       <ul class="nav navbar-nav">
-        <li class="dropdown active">
-            <a class="dropdown-toggle" data-toggle="dropdown">Home</a>
-            <ul class="dropdown-menu scrollable-menu">
-              
-              <li><a [routerLink]="['/ActionRequest']">Dashboard</a></li>
-              
-            </ul>
-        </li>
         <li class="dropdown active">
             <a class="dropdown-toggle" data-toggle="dropdown">Assets</a>
             <ul class="dropdown-menu scrollable-menu">
@@ -37,22 +29,20 @@
         <li class="dropdown active">
           <a class="dropdown-toggle" data-toggle="dropdown">Participants</a>
           <ul class="dropdown-menu scrollable-menu">
-
+            
             <li><a [routerLink]="['/Education']">Education</a></li>
             
             <li><a [routerLink]="['/Treasury']">Treasury</a></li>
             
             <li><a [routerLink]="['/Grantee']">Grantee</a></li>
             
-            <li><a [routerLink]="['/program1grantee']">program1grantee</a></li>
-            
-            <li><a [routerLink]="['/program2grantee']">program2grantee</a></li>
-            
           </ul>
       </li>
       <li class="dropdown active">
         <a class="dropdown-toggle" data-toggle="dropdown">Transactions</a>
         <ul class="dropdown-menu scrollable-menu">
+          
+          <li><a [routerLink]="['/SetUpDemo']">SetUpDemo</a></li>
           
           <li><a [routerLink]="['/CreateGrantee']">CreateGrantee</a></li>
           
@@ -66,11 +56,11 @@
           
           <li><a [routerLink]="['/CreateActionRequest']">CreateActionRequest</a></li>
           
-          <li><a [routerLink]="['/VerifyActionRequest']">VerifyActionRequest</a></li>
+          <li><a [routerLink]="['/AddValidatingGrantees']">AddValidatingGrantees</a></li>
           
           <li><a [routerLink]="['/ApproveActionRequest']">ApproveActionRequest</a></li>
           
-          <li><a [routerLink]="['/SetUpDemo']">SetUpDemo</a></li>
+          <li><a [routerLink]="['/VerifyActionRequest']">VerifyActionRequest</a></li>
           
         </ul>
     </li>

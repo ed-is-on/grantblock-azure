@@ -14,36 +14,36 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { GranteeService } from './Grantee.service';
+import { AddValidatingGranteesService } from './AddValidatingGrantees.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'app-grantee',
-  templateUrl: './Grantee.component.html',
-  styleUrls: ['./Grantee.component.css'],
-  providers: [GranteeService]
+  selector: 'app-addvalidatinggrantees',
+  templateUrl: './AddValidatingGrantees.component.html',
+  styleUrls: ['./AddValidatingGrantees.component.css'],
+  providers: [AddValidatingGranteesService]
 })
-export class GranteeComponent implements OnInit {
+export class AddValidatingGranteesComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allParticipants;
-  private participant;
+  private allTransactions;
+  private Transaction;
   private currentId;
   private errorMessage;
 
-  grantBalance = new FormControl('', Validators.required);
-  userId = new FormControl('', Validators.required);
-  pocName = new FormControl('', Validators.required);
-  pocEmail = new FormControl('', Validators.required);
+  validators = new FormControl('', Validators.required);
+  request = new FormControl('', Validators.required);
+  transactionId = new FormControl('', Validators.required);
+  timestamp = new FormControl('', Validators.required);
 
 
-  constructor(private serviceGrantee: GranteeService, fb: FormBuilder) {
+  constructor(private serviceAddValidatingGrantees: AddValidatingGranteesService, fb: FormBuilder) {
     this.myForm = fb.group({
-      grantBalance: this.grantBalance,
-      userId: this.userId,
-      pocName: this.pocName,
-      pocEmail: this.pocEmail
+      validators: this.validators,
+      request: this.request,
+      transactionId: this.transactionId,
+      timestamp: this.timestamp
     });
   };
 
@@ -53,20 +53,21 @@ export class GranteeComponent implements OnInit {
 
   loadAll(): Promise<any> {
     const tempList = [];
-    return this.serviceGrantee.getAll()
+    return this.serviceAddValidatingGrantees.getAll()
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
-      result.forEach(participant => {
-        tempList.push(participant);
+      result.forEach(transaction => {
+        tempList.push(transaction);
       });
-      this.allParticipants = tempList;
+      this.allTransactions = tempList;
     })
     .catch((error) => {
       if (error === 'Server error') {
         this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
       } else if (error === '404 - Not Found') {
         this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+      } else {
         this.errorMessage = error;
       }
     });
@@ -74,7 +75,7 @@ export class GranteeComponent implements OnInit {
 
 	/**
    * Event handler for changing the checked state of a checkbox (handles array enumeration values)
-   * @param {String} name - the name of the participant field to update
+   * @param {String} name - the name of the transaction field to update
    * @param {any} value - the enumeration value for which to toggle the checked state
    */
   changeArrayValue(name: string, value: any): void {
@@ -88,40 +89,40 @@ export class GranteeComponent implements OnInit {
 
 	/**
 	 * Checkbox helper, determining whether an enumeration value should be selected or not (for array enumeration values
-   * only). This is used for checkboxes in the participant updateDialog.
-   * @param {String} name - the name of the participant field to check
+   * only). This is used for checkboxes in the transaction updateDialog.
+   * @param {String} name - the name of the transaction field to check
    * @param {any} value - the enumeration value to check for
-   * @return {Boolean} whether the specified participant field contains the provided value
+   * @return {Boolean} whether the specified transaction field contains the provided value
    */
   hasArrayValue(name: string, value: any): boolean {
     return this[name].value.indexOf(value) !== -1;
   }
 
-  addParticipant(form: any): Promise<any> {
-    this.participant = {
-      $class: 'com.usgov.ed.grants.Grantee',
-      'grantBalance': this.grantBalance.value,
-      'userId': this.userId.value,
-      'pocName': this.pocName.value,
-      'pocEmail': this.pocEmail.value
+  addTransaction(form: any): Promise<any> {
+    this.Transaction = {
+      $class: 'com.usgov.ed.grants.AddValidatingGrantees',
+      'validators': this.validators.value,
+      'request': this.request.value,
+      'transactionId': this.transactionId.value,
+      'timestamp': this.timestamp.value
     };
 
     this.myForm.setValue({
-      'grantBalance': null,
-      'userId': null,
-      'pocName': null,
-      'pocEmail': null
+      'validators': null,
+      'request': null,
+      'transactionId': null,
+      'timestamp': null
     });
 
-    return this.serviceGrantee.addParticipant(this.participant)
+    return this.serviceAddValidatingGrantees.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'grantBalance': null,
-        'userId': null,
-        'pocName': null,
-        'pocEmail': null
+        'validators': null,
+        'request': null,
+        'transactionId': null,
+        'timestamp': null
       });
     })
     .catch((error) => {
@@ -133,16 +134,15 @@ export class GranteeComponent implements OnInit {
     });
   }
 
-
-   updateParticipant(form: any): Promise<any> {
-    this.participant = {
-      $class: 'com.usgov.ed.grants.Grantee',
-      'grantBalance': this.grantBalance.value,
-      'pocName': this.pocName.value,
-      'pocEmail': this.pocEmail.value
+  updateTransaction(form: any): Promise<any> {
+    this.Transaction = {
+      $class: 'com.usgov.ed.grants.AddValidatingGrantees',
+      'validators': this.validators.value,
+      'request': this.request.value,
+      'timestamp': this.timestamp.value
     };
 
-    return this.serviceGrantee.updateParticipant(form.get('userId').value, this.participant)
+    return this.serviceAddValidatingGrantees.updateTransaction(form.get('transactionId').value, this.Transaction)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -151,17 +151,16 @@ export class GranteeComponent implements OnInit {
       if (error === 'Server error') {
         this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
       } else if (error === '404 - Not Found') {
-        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+      this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
       } else {
         this.errorMessage = error;
       }
     });
   }
 
+  deleteTransaction(): Promise<any> {
 
-  deleteParticipant(): Promise<any> {
-
-    return this.serviceGrantee.deleteParticipant(this.currentId)
+    return this.serviceAddValidatingGrantees.deleteTransaction(this.currentId)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -183,61 +182,61 @@ export class GranteeComponent implements OnInit {
 
   getForm(id: any): Promise<any> {
 
-    return this.serviceGrantee.getparticipant(id)
+    return this.serviceAddValidatingGrantees.getTransaction(id)
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'grantBalance': null,
-        'userId': null,
-        'pocName': null,
-        'pocEmail': null
+        'validators': null,
+        'request': null,
+        'transactionId': null,
+        'timestamp': null
       };
 
-      if (result.grantBalance) {
-        formObject.grantBalance = result.grantBalance;
+      if (result.validators) {
+        formObject.validators = result.validators;
       } else {
-        formObject.grantBalance = null;
+        formObject.validators = null;
       }
 
-      if (result.userId) {
-        formObject.userId = result.userId;
+      if (result.request) {
+        formObject.request = result.request;
       } else {
-        formObject.userId = null;
+        formObject.request = null;
       }
 
-      if (result.pocName) {
-        formObject.pocName = result.pocName;
+      if (result.transactionId) {
+        formObject.transactionId = result.transactionId;
       } else {
-        formObject.pocName = null;
+        formObject.transactionId = null;
       }
 
-      if (result.pocEmail) {
-        formObject.pocEmail = result.pocEmail;
+      if (result.timestamp) {
+        formObject.timestamp = result.timestamp;
       } else {
-        formObject.pocEmail = null;
+        formObject.timestamp = null;
       }
 
       this.myForm.setValue(formObject);
+
     })
     .catch((error) => {
       if (error === 'Server error') {
         this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
       } else if (error === '404 - Not Found') {
-        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+      this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
       } else {
         this.errorMessage = error;
       }
     });
-
   }
 
   resetForm(): void {
     this.myForm.setValue({
-      'grantBalance': null,
-      'userId': null,
-      'pocName': null,
-      'pocEmail': null
+      'validators': null,
+      'request': null,
+      'transactionId': null,
+      'timestamp': null
     });
   }
 }

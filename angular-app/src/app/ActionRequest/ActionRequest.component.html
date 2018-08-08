@@ -36,6 +36,102 @@
           
 
             
+              <label for="status">status</label>
+              <div class="checkbox">
+                
+                  <label>
+                    <input
+                      
+                        formControlName="status"
+                      
+                      name="status"
+                      value="INITIALIZED"
+                      type="radio"
+                      
+                    />
+                    INITIALIZED
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="status"
+                      
+                      name="status"
+                      value="VALIDATORS_SELECTED"
+                      type="radio"
+                      
+                    />
+                    VALIDATORS_SELECTED
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="status"
+                      
+                      name="status"
+                      value="VALIDATION_IN_PROGRESS"
+                      type="radio"
+                      
+                    />
+                    VALIDATION_IN_PROGRESS
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="status"
+                      
+                      name="status"
+                      value="APPROVED"
+                      type="radio"
+                      
+                    />
+                    APPROVED
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="status"
+                      
+                      name="status"
+                      value="ADJUDICATED"
+                      type="radio"
+                      
+                    />
+                    ADJUDICATED
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="status"
+                      
+                      name="status"
+                      value="REJECTED"
+                      type="radio"
+                      
+                    />
+                    REJECTED
+                  </label>
+                
+              </div>
+            
+          
+
+            
+              <div class="form-group text-left">
+                <label for="createdDate">createdDate</label>
+                
+                  <input formControlName="createdDate" type="text" class="form-control">
+                
+              </div>
+            
+          
+
+            
               <div class="form-group text-left">
                 <label for="requestValue">requestValue</label>
                 
@@ -85,6 +181,16 @@
             
           
 
+            
+              <div class="form-group text-left">
+                <label for="receiptImage">receiptImage</label>
+                
+                  <input formControlName="receiptImage" type="text" class="form-control">
+                
+              </div>
+            
+          
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -116,6 +222,114 @@
               
               
                 <input [ngModel]="requestId" formControlName="requestId" class="form-control" disabled="disabled">  
+              
+
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="status">status</label>
+              
+              
+                
+                  <div class="row">
+                    <div class="col-xs-12 checkbox">
+                    
+                      <label>
+                        <input
+                          
+                            formControlName="status"
+                            [ngModel]="status"
+                          
+                          name="status"
+                          value="INITIALIZED"
+                          type="radio"
+                          
+                        />
+                        INITIALIZED
+                      </label>
+                    
+                      <label>
+                        <input
+                          
+                            formControlName="status"
+                            [ngModel]="status"
+                          
+                          name="status"
+                          value="VALIDATORS_SELECTED"
+                          type="radio"
+                          
+                        />
+                        VALIDATORS_SELECTED
+                      </label>
+                    
+                      <label>
+                        <input
+                          
+                            formControlName="status"
+                            [ngModel]="status"
+                          
+                          name="status"
+                          value="VALIDATION_IN_PROGRESS"
+                          type="radio"
+                          
+                        />
+                        VALIDATION_IN_PROGRESS
+                      </label>
+                    
+                      <label>
+                        <input
+                          
+                            formControlName="status"
+                            [ngModel]="status"
+                          
+                          name="status"
+                          value="APPROVED"
+                          type="radio"
+                          
+                        />
+                        APPROVED
+                      </label>
+                    
+                      <label>
+                        <input
+                          
+                            formControlName="status"
+                            [ngModel]="status"
+                          
+                          name="status"
+                          value="ADJUDICATED"
+                          type="radio"
+                          
+                        />
+                        ADJUDICATED
+                      </label>
+                    
+                      <label>
+                        <input
+                          
+                            formControlName="status"
+                            [ngModel]="status"
+                          
+                          name="status"
+                          value="REJECTED"
+                          type="radio"
+                          
+                        />
+                        REJECTED
+                      </label>
+                    
+                    </div>
+                  </div>
+                
+              
+
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="createdDate">createdDate</label>
+              
+              
+                <input [ngModel]="createdDate"formControlName="createdDate" type="text" class="form-control">
               
 
             </div>
@@ -167,6 +381,15 @@
               
               
                 <input [ngModel]="treasuryValidator" formControlName="treasuryValidator" type="checkbox" class="form-control">
+              
+
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="receiptImage">receiptImage</label>
+              
+              
+                <input [ngModel]="receiptImage"formControlName="receiptImage" type="text" class="form-control">
               
 
             </div>
@@ -244,6 +467,10 @@
             
                 <th class="info">requestId</th>
             
+                <th class="info">status</th>
+            
+                <th class="info">createdDate</th>
+            
                 <th class="info">requestValue</th>
             
                 <th class="info">owner</th>
@@ -254,6 +481,8 @@
             
                 <th class="info">treasuryValidator</th>
             
+                <th class="info">receiptImage</th>
+            
               <th class="info-actions">Actions</th>
           </tr>
         </thead>
@@ -262,6 +491,10 @@
 
             
                 <td class="asset-properties">{{asset.requestId}}</td>
+            
+                <td class="asset-properties">{{asset.status}}</td>
+            
+                <td class="asset-properties">{{asset.createdDate}}</td>
             
                 <td class="asset-properties">{{asset.requestValue}}</td>
             
@@ -272,6 +505,8 @@
                 <td class="asset-properties">{{asset.approvedValidators}}</td>
             
                 <td class="asset-properties">{{asset.treasuryValidator}}</td>
+            
+                <td class="asset-properties">{{asset.receiptImage}}</td>
             
             <td>
               <button (click)="getForm(asset.requestId);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateAssetModal">

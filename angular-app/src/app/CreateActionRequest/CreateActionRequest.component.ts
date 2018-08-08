@@ -33,7 +33,6 @@ export class CreateActionRequestComponent implements OnInit {
   private errorMessage;
 
   requestValue = new FormControl('', Validators.required);
-  validators = new FormControl('', Validators.required);
   requestor = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
@@ -42,7 +41,6 @@ export class CreateActionRequestComponent implements OnInit {
   constructor(private serviceCreateActionRequest: CreateActionRequestService, fb: FormBuilder) {
     this.myForm = fb.group({
       requestValue: this.requestValue,
-      validators: this.validators,
       requestor: this.requestor,
       transactionId: this.transactionId,
       timestamp: this.timestamp
@@ -104,7 +102,6 @@ export class CreateActionRequestComponent implements OnInit {
     this.Transaction = {
       $class: 'com.usgov.ed.grants.CreateActionRequest',
       'requestValue': this.requestValue.value,
-      'validators': this.validators.value,
       'requestor': this.requestor.value,
       'transactionId': this.transactionId.value,
       'timestamp': this.timestamp.value
@@ -112,7 +109,6 @@ export class CreateActionRequestComponent implements OnInit {
 
     this.myForm.setValue({
       'requestValue': null,
-      'validators': null,
       'requestor': null,
       'transactionId': null,
       'timestamp': null
@@ -124,7 +120,6 @@ export class CreateActionRequestComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'requestValue': null,
-        'validators': null,
         'requestor': null,
         'transactionId': null,
         'timestamp': null
@@ -143,7 +138,6 @@ export class CreateActionRequestComponent implements OnInit {
     this.Transaction = {
       $class: 'com.usgov.ed.grants.CreateActionRequest',
       'requestValue': this.requestValue.value,
-      'validators': this.validators.value,
       'requestor': this.requestor.value,
       'timestamp': this.timestamp.value
     };
@@ -194,7 +188,6 @@ export class CreateActionRequestComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'requestValue': null,
-        'validators': null,
         'requestor': null,
         'transactionId': null,
         'timestamp': null
@@ -204,12 +197,6 @@ export class CreateActionRequestComponent implements OnInit {
         formObject.requestValue = result.requestValue;
       } else {
         formObject.requestValue = null;
-      }
-
-      if (result.validators) {
-        formObject.validators = result.validators;
-      } else {
-        formObject.validators = null;
       }
 
       if (result.requestor) {
@@ -247,7 +234,6 @@ export class CreateActionRequestComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'requestValue': null,
-      'validators': null,
       'requestor': null,
       'transactionId': null,
       'timestamp': null

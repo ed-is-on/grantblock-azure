@@ -32,12 +32,18 @@ export class ApproveActionRequestComponent implements OnInit {
   private currentId;
   private errorMessage;
 
+  approve = new FormControl('', Validators.required);
+  approver = new FormControl('', Validators.required);
+  request = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
 
 
   constructor(private serviceApproveActionRequest: ApproveActionRequestService, fb: FormBuilder) {
     this.myForm = fb.group({
+      approve: this.approve,
+      approver: this.approver,
+      request: this.request,
       transactionId: this.transactionId,
       timestamp: this.timestamp
     });
@@ -97,11 +103,17 @@ export class ApproveActionRequestComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'com.usgov.ed.grants.ApproveActionRequest',
+      'approve': this.approve.value,
+      'approver': this.approver.value,
+      'request': this.request.value,
       'transactionId': this.transactionId.value,
       'timestamp': this.timestamp.value
     };
 
     this.myForm.setValue({
+      'approve': null,
+      'approver': null,
+      'request': null,
       'transactionId': null,
       'timestamp': null
     });
@@ -111,6 +123,9 @@ export class ApproveActionRequestComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
+        'approve': null,
+        'approver': null,
+        'request': null,
         'transactionId': null,
         'timestamp': null
       });
@@ -127,6 +142,9 @@ export class ApproveActionRequestComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'com.usgov.ed.grants.ApproveActionRequest',
+      'approve': this.approve.value,
+      'approver': this.approver.value,
+      'request': this.request.value,
       'timestamp': this.timestamp.value
     };
 
@@ -175,9 +193,30 @@ export class ApproveActionRequestComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
+        'approve': null,
+        'approver': null,
+        'request': null,
         'transactionId': null,
         'timestamp': null
       };
+
+      if (result.approve) {
+        formObject.approve = result.approve;
+      } else {
+        formObject.approve = null;
+      }
+
+      if (result.approver) {
+        formObject.approver = result.approver;
+      } else {
+        formObject.approver = null;
+      }
+
+      if (result.request) {
+        formObject.request = result.request;
+      } else {
+        formObject.request = null;
+      }
 
       if (result.transactionId) {
         formObject.transactionId = result.transactionId;
@@ -207,6 +246,9 @@ export class ApproveActionRequestComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
+      'approve': null,
+      'approver': null,
+      'request': null,
       'transactionId': null,
       'timestamp': null
     });

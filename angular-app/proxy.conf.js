@@ -25,7 +25,6 @@ function getTarget() {
         return restServerURL;
     }
     return 'http://localhost:3000';
-    // return 'http://edhyperledger.eastus2.cloudapp.azure.com:3000';
 }
 
 const target = getTarget();

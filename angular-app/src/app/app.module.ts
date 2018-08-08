@@ -26,18 +26,17 @@ import { ActionRequestComponent } from './ActionRequest/ActionRequest.component'
 import { EducationComponent } from './Education/Education.component';
 import { TreasuryComponent } from './Treasury/Treasury.component';
 import { GranteeComponent } from './Grantee/Grantee.component';
-import { program1granteeComponent } from './program1grantee/program1grantee.component';
-import { program2granteeComponent } from './program2grantee/program2grantee.component';
 
+import { SetUpDemoComponent } from './SetUpDemo/SetUpDemo.component';
 import { CreateGranteeComponent } from './CreateGrantee/CreateGrantee.component';
 import { CreateEdUserComponent } from './CreateEdUser/CreateEdUser.component';
 import { CreateTreasuryComponent } from './CreateTreasury/CreateTreasury.component';
 import { ImportGranteeComponent } from './ImportGrantee/ImportGrantee.component';
 import { ObligateSlateComponent } from './ObligateSlate/ObligateSlate.component';
 import { CreateActionRequestComponent } from './CreateActionRequest/CreateActionRequest.component';
-import { VerifyActionRequestComponent } from './VerifyActionRequest/VerifyActionRequest.component';
+import { AddValidatingGranteesComponent } from './AddValidatingGrantees/AddValidatingGrantees.component';
 import { ApproveActionRequestComponent } from './ApproveActionRequest/ApproveActionRequest.component';
-import { SetUpDemoComponent } from './SetUpDemo/SetUpDemo.component';
+import { VerifyActionRequestComponent } from './VerifyActionRequest/VerifyActionRequest.component';
 
   @NgModule({
   declarations: [
@@ -47,17 +46,16 @@ import { SetUpDemoComponent } from './SetUpDemo/SetUpDemo.component';
     EducationComponent,
     TreasuryComponent,
     GranteeComponent,
-    program1granteeComponent,
-    program2granteeComponent,
+    SetUpDemoComponent,
     CreateGranteeComponent,
     CreateEdUserComponent,
     CreateTreasuryComponent,
     ImportGranteeComponent,
     ObligateSlateComponent,
     CreateActionRequestComponent,
-    VerifyActionRequestComponent,
+    AddValidatingGranteesComponent,
     ApproveActionRequestComponent,
-    SetUpDemoComponent
+    VerifyActionRequestComponent
   ],
   imports: [
     BrowserModule,

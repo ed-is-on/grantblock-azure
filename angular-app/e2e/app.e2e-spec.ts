@@ -31,13 +31,13 @@ describe('Starting tests for angular-app', function() {
     })
   });
 
-  it('network-name should be dev-edgrants-network@0.0.1',() => {
+  it('network-name should be dev-edgrants-network@0.0.58',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('dev-edgrants-network@0.0.1.bna');
+      expect(txt).toBe('dev-edgrants-network@0.0.58.bna');
     });
   });
 
@@ -63,10 +63,10 @@ describe('Starting tests for angular-app', function() {
       });
     });
 
-    it('ActionRequest table should have 7 columns',() => {
+    it('ActionRequest table should have 10 columns',() => {
       page.navigateTo('/ActionRequest');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(10); // Addition of 1 for 'Action' column
       });
     });
   
@@ -119,50 +119,25 @@ describe('Starting tests for angular-app', function() {
       });
     });
 
-    it('Grantee table should have 7 columns',() => {
+    it('Grantee table should have 5 columns',() => {
       page.navigateTo('/Grantee');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(5); // Addition of 1 for 'Action' column
       });
     });
   
-    it('program1grantee component should be loadable',() => {
-      page.navigateTo('/program1grantee');
-      browser.findElement(by.id('participantName'))
-      .then((participantName) => {
-        return participantName.getText();
+
+  
+    it('SetUpDemo component should be loadable',() => {
+      page.navigateTo('/SetUpDemo');
+      browser.findElement(by.id('transactionName'))
+      .then((transactionName) => {
+        return transactionName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('program1grantee');
+        expect(txt).toBe('SetUpDemo');
       });
     });
-
-    it('program1grantee table should have 7 columns',() => {
-      page.navigateTo('/program1grantee');
-      element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
-      });
-    });
-  
-    it('program2grantee component should be loadable',() => {
-      page.navigateTo('/program2grantee');
-      browser.findElement(by.id('participantName'))
-      .then((participantName) => {
-        return participantName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('program2grantee');
-      });
-    });
-
-    it('program2grantee table should have 7 columns',() => {
-      page.navigateTo('/program2grantee');
-      element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
-      });
-    });
-  
-
   
     it('CreateGrantee component should be loadable',() => {
       page.navigateTo('/CreateGrantee');
@@ -230,14 +205,14 @@ describe('Starting tests for angular-app', function() {
       });
     });
   
-    it('VerifyActionRequest component should be loadable',() => {
-      page.navigateTo('/VerifyActionRequest');
+    it('AddValidatingGrantees component should be loadable',() => {
+      page.navigateTo('/AddValidatingGrantees');
       browser.findElement(by.id('transactionName'))
       .then((transactionName) => {
         return transactionName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('VerifyActionRequest');
+        expect(txt).toBe('AddValidatingGrantees');
       });
     });
   
@@ -252,14 +227,14 @@ describe('Starting tests for angular-app', function() {
       });
     });
   
-    it('SetUpDemo component should be loadable',() => {
-      page.navigateTo('/SetUpDemo');
+    it('VerifyActionRequest component should be loadable',() => {
+      page.navigateTo('/VerifyActionRequest');
       browser.findElement(by.id('transactionName'))
       .then((transactionName) => {
         return transactionName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('SetUpDemo');
+        expect(txt).toBe('VerifyActionRequest');
       });
     });
   

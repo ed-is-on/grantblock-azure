@@ -27,19 +27,9 @@
 
             
               <div class="form-group text-left">
-                <label for="approve">approve</label>
+                <label for="validators">validators</label>
                 
-                  <input formControlName="approve" type="checkbox" class="form-control">
-                
-              </div>
-            
-          
-
-            
-              <div class="form-group text-left">
-                <label for="approver">approver</label>
-                
-                    <textarea formControlName="approver" class="form-control" rows="3"></textarea>
+                  <input formControlName="validators" type="number" class="form-control">
                 
               </div>
             
@@ -102,21 +92,10 @@
 
           
             <div class="form-group text-left">
-              <label for="approve">approve</label>
+              <label for="validators">validators</label>
 
               
-                <input [ngModel]="approve" formControlName="approve" type="checkbox" class="form-control">
-              
-
-            </div>
-          
-            <div class="form-group text-left">
-              <label for="approver">approver</label>
-
-              
-                
-                  <textarea [ngModel]="approver" formControlName="approver" class="form-control" rows="3"></textarea>
-                
+                <input [ngModel]="validators" formControlName="validators" type="number" class="form-control">
               
 
             </div>
@@ -201,7 +180,7 @@
   
   <div class="row">
     <div class="col-md-12">
-        <h1 class="transaction-title" id='transactionName'>ApproveActionRequest</h1>
+        <h1 class="transaction-title" id='transactionName'>AddValidatingGrantees</h1>
         <p class="invoke_cancel" id='invoke_cancel'>Invoke</p>
     </div>
   </div>
@@ -216,12 +195,7 @@
             
 
               
-                <li><span class="attribute"><b>approve</b></span></li>
-              
-            
-
-              
-                <li><span class="attribute"><b>approver</b></span></li>
+                <li><span class="attribute"><b>validators</b></span></li>
               
             
 

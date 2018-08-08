@@ -7,6 +7,14 @@ import {Event} from './org.hyperledger.composer.system';
       granteeId: string;
       allottedAmount: number;
    }
+   export enum RequestStatus {
+      INITIALIZED,
+      VALIDATORS_SELECTED,
+      VALIDATION_IN_PROGRESS,
+      APPROVED,
+      ADJUDICATED,
+      REJECTED,
+   }
    export abstract class User extends Participant {
       userId: string;
       pocName: string;
@@ -17,24 +25,24 @@ import {Event} from './org.hyperledger.composer.system';
    export class Treasury extends User {
    }
    export class Grantee extends User {
-      granteeId: string;
       grantBalance: number;
-      numActionsReqs: number;
-   }
-   export class program1grantee extends Grantee {
-   }
-   export class program2grantee extends Grantee {
    }
    export class ActionRequest extends Asset {
       requestId: string;
+      status: RequestStatus;
+      createdDate: string;
       requestValue: number;
       owner: Grantee;
       assignedValidators: Grantee[];
       approvedValidators: Grantee[];
       treasuryValidator: boolean;
+      receiptImage: string;
+   }
+   export class SetUpDemo extends Transaction {
+      grantBalance: number;
    }
    export class CreateGrantee extends Transaction {
-      granteeId: string;
+      userId: string;
       grantBalance: number;
       pocName: string;
       pocEmail: string;
@@ -50,7 +58,7 @@ import {Event} from './org.hyperledger.composer.system';
       pocEmail: string;
    }
    export class ImportGrantee extends Transaction {
-      granteeId: string;
+      userId: string;
       grantBalance: number;
       pocName: string;
       pocEmail: string;
@@ -60,21 +68,33 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class CreateActionRequest extends Transaction {
       requestValue: number;
-      validators: number;
       requestor: Grantee;
+   }
+   export class AddValidatingGrantees extends Transaction {
+      validators: number;
+      request: ActionRequest;
+   }
+   export class ApproveActionRequest extends Transaction {
+      approve: boolean;
+      approver: Grantee;
+      request: ActionRequest;
    }
    export class VerifyActionRequest extends Transaction {
    }
-   export class ApproveActionRequest extends Transaction {
+   export class NotifyValidators extends Event {
+      request: ActionRequest;
    }
-   export class SetUpDemo extends Transaction {
-      grantBalance: number;
+   export class NotifyRequestFailure extends Event {
+      request: ActionRequest;
+   }
+   export class NotifyRequestSuccess extends Event {
+      request: ActionRequest;
    }
    export class NotifyDisbursement extends Event {
    }
    export class NotifyApprovers extends Event {
-      verifierid: string;
       req: ActionRequest;
+      verifierid: string;
    }
    export class NotifyTreasury extends Event {
       req: ActionRequest;

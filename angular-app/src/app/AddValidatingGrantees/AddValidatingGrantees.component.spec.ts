@@ -21,24 +21,24 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
-import { program2granteeComponent } from './program2grantee.component';
-import {program2granteeService} from './program2grantee.service';
+import { AddValidatingGranteesComponent } from './AddValidatingGrantees.component';
+import {AddValidatingGranteesService} from './AddValidatingGrantees.service';
 
-describe('program2granteeComponent', () => {
-  let component: program2granteeComponent;
-  let fixture: ComponentFixture<program2granteeComponent>;
+describe('AddValidatingGranteesComponent', () => {
+  let component: AddValidatingGranteesComponent;
+  let fixture: ComponentFixture<AddValidatingGranteesComponent>;
 
-  let mockprogram2granteeService;
+  let mockAddValidatingGranteesService;
   let mockDataService
 
   beforeEach(async(() => {
 
-    mockprogram2granteeService = sinon.createStubInstance(program2granteeService);
-    mockprogram2granteeService.getAll.returns([]);
+    mockAddValidatingGranteesService = sinon.createStubInstance(AddValidatingGranteesService);
+    mockAddValidatingGranteesService.getAll.returns([]);
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [ program2granteeComponent ],
+      declarations: [ AddValidatingGranteesComponent ],
       imports: [
         BrowserModule,
         FormsModule,
@@ -46,18 +46,20 @@ describe('program2granteeComponent', () => {
         HttpModule
       ],
       providers: [
-        {provide: program2granteeService, useValue: mockprogram2granteeService },
+        {provide: AddValidatingGranteesService, useValue: mockAddValidatingGranteesService },
         {provide: DataService, useValue: mockDataService },
       ]
     });
 
-    fixture = TestBed.createComponent(program2granteeComponent);
+    fixture = TestBed.createComponent(AddValidatingGranteesComponent);
     component = fixture.componentInstance;
 
   }));
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
 });
+

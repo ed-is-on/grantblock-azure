@@ -32,7 +32,7 @@ export class CreateGranteeComponent implements OnInit {
   private currentId;
   private errorMessage;
 
-  granteeId = new FormControl('', Validators.required);
+  userId = new FormControl('', Validators.required);
   grantBalance = new FormControl('', Validators.required);
   pocName = new FormControl('', Validators.required);
   pocEmail = new FormControl('', Validators.required);
@@ -42,7 +42,7 @@ export class CreateGranteeComponent implements OnInit {
 
   constructor(private serviceCreateGrantee: CreateGranteeService, fb: FormBuilder) {
     this.myForm = fb.group({
-      granteeId: this.granteeId,
+      userId: this.userId,
       grantBalance: this.grantBalance,
       pocName: this.pocName,
       pocEmail: this.pocEmail,
@@ -105,7 +105,7 @@ export class CreateGranteeComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'com.usgov.ed.grants.CreateGrantee',
-      'granteeId': this.granteeId.value,
+      'userId': this.userId.value,
       'grantBalance': this.grantBalance.value,
       'pocName': this.pocName.value,
       'pocEmail': this.pocEmail.value,
@@ -114,7 +114,7 @@ export class CreateGranteeComponent implements OnInit {
     };
 
     this.myForm.setValue({
-      'granteeId': null,
+      'userId': null,
       'grantBalance': null,
       'pocName': null,
       'pocEmail': null,
@@ -127,7 +127,7 @@ export class CreateGranteeComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'granteeId': null,
+        'userId': null,
         'grantBalance': null,
         'pocName': null,
         'pocEmail': null,
@@ -147,7 +147,7 @@ export class CreateGranteeComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'com.usgov.ed.grants.CreateGrantee',
-      'granteeId': this.granteeId.value,
+      'userId': this.userId.value,
       'grantBalance': this.grantBalance.value,
       'pocName': this.pocName.value,
       'pocEmail': this.pocEmail.value,
@@ -199,7 +199,7 @@ export class CreateGranteeComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'granteeId': null,
+        'userId': null,
         'grantBalance': null,
         'pocName': null,
         'pocEmail': null,
@@ -207,10 +207,10 @@ export class CreateGranteeComponent implements OnInit {
         'timestamp': null
       };
 
-      if (result.granteeId) {
-        formObject.granteeId = result.granteeId;
+      if (result.userId) {
+        formObject.userId = result.userId;
       } else {
-        formObject.granteeId = null;
+        formObject.userId = null;
       }
 
       if (result.grantBalance) {
@@ -259,7 +259,7 @@ export class CreateGranteeComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'granteeId': null,
+      'userId': null,
       'grantBalance': null,
       'pocName': null,
       'pocEmail': null,
