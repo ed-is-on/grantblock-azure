@@ -10,9 +10,9 @@
 			<a href="#Profile">Profile</a>
 		</li>
 		<li>
-			<select aria-placeholder="Select A Grantee" name="GranteeSelector" id="granteeSelector" [(ngModel)]="grantee" (ngChnage)="UpdateSelectedGrantee(grantee)">
-		    <option *ngFor="let _grantee of GetAllGrantees()" [ngValue]="_grantee">{{_grantee.Name}}</option>
-	    </select>
+			<select aria-placeholder="Select A Grantee" name="GranteeSelector" id="granteeSelector" [(ngModel)]="grantee" (ngChange)="UpdateSelectedGrantee(grantee)">
+		   		<option *ngFor="let _grantee of allGrantees" [ngValue]="_grantee">{{_grantee.Name}}</option>
+	    	</select>
 		</li>
 		<li style="float:right">
 			<a class="exit" href="#logOut">Logout</a>
@@ -22,6 +22,9 @@
 	</form>
 </div>
 <div class="cBody">
+	<!-- <div>
+		<button (click)="GetAllGrantees()" >Test Get Grantees</button>
+	</div> -->
 	<div id="top" classs="tCenter">
 		<div id="top_left" class="tLeft quad">
 			<!-- <grantee-chart *ngIf="grantee" [UpdateSelectedGrantee]="grantee"></grantee-chart> -->
@@ -32,7 +35,7 @@
 	</div>
 	<div id="bottom" class="bCenter">
 		<div id="bottom_left" class="bLeft quad">
-			<!-- <grantee-transactions *ngIf="grantee" [UpdateSelectedGrantee]="grantee"></grantee-transactions> -->
+			<grantee-transactions *ngIf="grantee" [UpdateSelectedGrantee]="grantee"></grantee-transactions>
 		</div>
 		<div id="bottom_right" class="bRight quad">
 			<!-- <grantee-approvals></grantee-approvals> -->

@@ -17,6 +17,10 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from './material.module';
+import { HighchartsChartModule } from 'highcharts-angular';
+
 import { DataService } from './data.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -40,6 +44,10 @@ import { VerifyActionRequestComponent } from './VerifyActionRequest/VerifyAction
 
 // WFE Components
 import { GranteeViewComponent } from './GrantBlockWfe/components/grantee/grantee.component';
+import { GranteeTransactionsComponent } from './GrantBlockWfe/components/grantee-transactions/grantee-transactions.component';
+import { TransactionDialogComponent } from './GrantBlockWfe/components/dialogs/transaction/transaction.dialog.component';
+
+
 
   @NgModule({
   declarations: [
@@ -60,17 +68,25 @@ import { GranteeViewComponent } from './GrantBlockWfe/components/grantee/grantee
     ApproveActionRequestComponent,
     VerifyActionRequestComponent,
     // WFE Components
-    GranteeViewComponent
+    GranteeViewComponent,
+    TransactionDialogComponent,
+    GranteeTransactionsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    HighchartsChartModule
   ],
   providers: [
     DataService
+  ],
+  entryComponents:[
+    TransactionDialogComponent
   ],
   bootstrap: [AppComponent]
 })
