@@ -14,7 +14,9 @@
 
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable} from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of'
+// import { of } from 'rxjs/observable/of';
 import { Grantee } from '../com.usgov.ed.grants';
 import 'rxjs/Rx';
 
