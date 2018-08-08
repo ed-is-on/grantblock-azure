@@ -496,11 +496,11 @@
             
                 <td class="asset-properties">{{asset.createdDate}}</td>
             
-                <td class="asset-properties">{{asset.requestValue}}</td>
+                <td class="asset-properties">{{asset.requestValue | currency}}</td>
             
                 <td class="asset-properties">{{asset.owner}}</td>
             
-                <td class="asset-properties">{{asset.assignedValidators}}</td>
+                <td class="asset-properties">{{showMeTheGrantee(asset.assignedValidators)}}</td>
             
                 <td class="asset-properties">{{asset.approvedValidators}}</td>
             

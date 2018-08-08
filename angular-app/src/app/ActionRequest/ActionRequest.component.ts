@@ -60,6 +60,12 @@ export class ActionRequestComponent implements OnInit {
     this.loadAll();
   }
 
+  showMeTheGrantee(_assignedValidators){
+    return _assignedValidators.map((x)=>{
+      return `${x.pocName} (${x.userId})`
+    }).join(", ")
+  }
+
   loadAll(): Promise<any> {
     const tempList = [];
     return this.serviceActionRequest.getAll()

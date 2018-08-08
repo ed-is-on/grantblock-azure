@@ -38,6 +38,9 @@ import { AddValidatingGranteesComponent } from './AddValidatingGrantees/AddValid
 import { ApproveActionRequestComponent } from './ApproveActionRequest/ApproveActionRequest.component';
 import { VerifyActionRequestComponent } from './VerifyActionRequest/VerifyActionRequest.component';
 
+// WFE Components
+import { GranteeViewComponent } from './GrantBlockWfe/components/grantee/grantee.component';
+
   @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +58,9 @@ import { VerifyActionRequestComponent } from './VerifyActionRequest/VerifyAction
     CreateActionRequestComponent,
     AddValidatingGranteesComponent,
     ApproveActionRequestComponent,
-    VerifyActionRequestComponent
+    VerifyActionRequestComponent,
+    // WFE Components
+    GranteeViewComponent
   ],
   imports: [
     BrowserModule,

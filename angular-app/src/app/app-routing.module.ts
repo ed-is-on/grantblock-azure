@@ -34,6 +34,9 @@ import { AddValidatingGranteesComponent } from './AddValidatingGrantees/AddValid
 import { ApproveActionRequestComponent } from './ApproveActionRequest/ApproveActionRequest.component';
 import { VerifyActionRequestComponent } from './VerifyActionRequest/VerifyActionRequest.component';
 
+// WFE Components
+import { GranteeViewComponent } from './GrantBlockWfe/components/grantee/grantee.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'ActionRequest', component: ActionRequestComponent },
@@ -50,6 +53,7 @@ const routes: Routes = [
   { path: 'AddValidatingGrantees', component: AddValidatingGranteesComponent },
   { path: 'ApproveActionRequest', component: ApproveActionRequestComponent },
   { path: 'VerifyActionRequest', component: VerifyActionRequestComponent },
+  { path: 'Home', component: GranteeViewComponent },
   { path: '**', redirectTo: '' }
 ];
 
