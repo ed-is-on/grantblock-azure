@@ -1,0 +1,17 @@
+/*
+* Queries for GrantBlock
+*/
+
+query selectGranteeActionRequests{
+  description: "Select all Action Requests that a specified grantee is listed as the owner of"
+  statement:
+    SELECT com.usgov.ed.grants.ActionRequest
+      WHERE (owner == _$owner)
+}
+
+query selectGranteesActionRequestsForValidation {
+  description: "Select all Action Requests that the specified grantee needs to validate"
+  statement:
+    SELECT com.usgov.ed.grants.ActionRequest
+      WHERE (assignedValidators CONTAINS [_$owner])
+}
