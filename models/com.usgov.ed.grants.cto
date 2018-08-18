@@ -36,6 +36,12 @@ enum RequestStatus{
   o REJECTED // if at any point something is rejected, the overall status changes to rejected
 }
 
+enum RequestType {
+  o DRAWDOWN // the default request type
+  o REFUND // 
+  o AWARD //
+}
+
 //Participants
 /**
 * A User base class
@@ -79,6 +85,7 @@ asset ActionRequest identified by requestId {
   o Boolean treasuryValidator
   o String receiptImage optional // the link or pointer/hash for the receipt
   o String receiptHash optional
+  o RequestType type
 }
 
 // transactions
@@ -120,6 +127,8 @@ transaction ObligateSlate {
 transaction CreateActionRequest{
   o Long requestValue
   --> Grantee requestor
+  o String type optional
+  o String date optional
 }
 
 transaction AddValidatingGrantees{
