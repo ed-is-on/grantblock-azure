@@ -71,13 +71,14 @@ participant Grantee extends User {
 asset ActionRequest identified by requestId {
   o String requestId
   o RequestStatus status
-  o String createdDate optional
+  o DateTime createdDate optional
   o Long requestValue
   --> Grantee owner
   o Grantee[] assignedValidators
   o Grantee[] approvedValidators
   o Boolean treasuryValidator
   o String receiptImage optional // the link or pointer/hash for the receipt
+  o String receiptHash optional
 }
 
 // transactions
