@@ -78,7 +78,7 @@ asset ActionRequest identified by requestId {
   o String requestId
   o RequestStatus status
   o DateTime createdDate optional
-  o Long requestValue
+  o Double requestValue
   --> Grantee owner
   o Grantee[] assignedValidators
   o Grantee[] approvedValidators
@@ -91,12 +91,12 @@ asset ActionRequest identified by requestId {
 // transactions
 
 transaction SetUpDemo{
-  o Long grantBalance
+  o Double grantBalance
 }
 
 transaction CreateGrantee {
   o String userId
-  o Long grantBalance optional
+  o Double grantBalance optional
   o String pocName
   o String pocEmail
 }
@@ -115,7 +115,7 @@ transaction CreateTreasury{
 
 transaction ImportGrantee {
   o String userId
-  o Long grantBalance
+  o Double grantBalance
   o String pocName
   o String pocEmail
 }
@@ -125,7 +125,7 @@ transaction ObligateSlate {
 }
 
 transaction CreateActionRequest{
-  o Long requestValue
+  o Double requestValue
   --> Grantee requestor
   o String type optional
   o String date optional
