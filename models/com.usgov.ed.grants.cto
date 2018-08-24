@@ -25,6 +25,19 @@ concept Obligation {
   o Long allottedAmount
 }
 
+/**
+* A concept containing information about newly created Action Requests
+*/
+concept NewActionRequest{
+  o String requestId
+  o RequestStatus status optional
+  o DateTime createdDate optional
+  o Double requestValue optional
+  o String receiptImage optional // the link or pointer/hash for the receipt
+  o String receiptHash optional
+  o RequestType type optional
+}
+
 // Enums
 
 enum RequestStatus{
@@ -37,7 +50,8 @@ enum RequestStatus{
 }
 
 enum RequestType {
-  o DRAWDOWN // the default request type
+  o DRAWDOWN //
+  o DRAWDOWN_ADJUSTMENT // the default request type
   o REFUND // 
   o AWARD //
 }
@@ -124,6 +138,7 @@ transaction ObligateSlate {
   o Obligation[] slate
 }
 
+@returns(NewActionRequest)
 transaction CreateActionRequest{
   o Double requestValue
   --> Grantee requestor
