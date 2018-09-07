@@ -4,3 +4,4 @@ composer-logs/
 staging/
 dist/
 admin@dev-edgrants-network.card
+nohup.out

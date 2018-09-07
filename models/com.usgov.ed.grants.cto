@@ -144,6 +144,8 @@ transaction CreateActionRequest{
   --> Grantee requestor
   o String type optional
   o String date optional
+  o String receiptHash optional
+  o String receiptImage optional
 }
 
 transaction AddValidatingGrantees{
@@ -155,6 +157,7 @@ transaction ApproveActionRequest{
   o Boolean approve
   --> Grantee approver
   --> ActionRequest request
+  o String receiptHash optional
 }
 
 transaction VerifyActionRequest {
