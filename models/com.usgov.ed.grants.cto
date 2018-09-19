@@ -36,6 +36,7 @@ concept NewActionRequest{
   o String receiptImage optional // the link or pointer/hash for the receipt
   o String receiptHash optional
   o RequestType type optional
+  o String purpose optional
 }
 
 // Enums
@@ -96,9 +97,11 @@ asset ActionRequest identified by requestId {
   --> Grantee owner
   o Grantee[] assignedValidators
   o Grantee[] approvedValidators
+  o Grantee[] rejectValidators
   o Boolean treasuryValidator
   o String receiptImage optional // the link or pointer/hash for the receipt
   o String receiptHash optional
+  o String purpose optional 
   o RequestType type
 }
 
@@ -146,6 +149,7 @@ transaction CreateActionRequest{
   o String date optional
   o String receiptHash optional
   o String receiptImage optional
+  o String purpose optional
 }
 
 transaction AddValidatingGrantees{
@@ -158,6 +162,8 @@ transaction ApproveActionRequest{
   --> Grantee approver
   --> ActionRequest request
   o String receiptHash optional
+  o String reasonRejected optional
+  o String comment optional
 }
 
 transaction VerifyActionRequest {

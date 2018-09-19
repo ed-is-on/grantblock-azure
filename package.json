@@ -3,7 +3,7 @@
     "composer": "^0.19.14"
   },
   "name": "dev-edgrants-network",
-  "version": "0.0.97",
+  "version": "0.0.105",
   "description": "Dev network for Ed Grants Blockchain poc",
   "scripts": {
     "prepublish": "composer archive create --sourceType dir --sourceName . -a dev-edgrants-network.bna",
@@ -17,6 +17,10 @@
   ],
   "author": "Department of Education",
   "contributors": [
+    {
+      "name": "Michael Youngdahl",
+      "email": "michael.youngdahl@ibm.com"
+    },
     {
       "name": "Winston Chang",
       "email": "winston.chang@ed.gov"
