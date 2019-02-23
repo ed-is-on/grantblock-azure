@@ -39,6 +39,16 @@ concept NewActionRequest{
   o String purpose optional
 }
 
+/**
+  A concept containing information for a new Award
+ */
+concept NewAward{
+  --> Grantee grantee
+  o Double amount
+  o DateTime date optional
+}
+
+
 // Enums
 
 enum RequestStatus{
@@ -109,6 +119,10 @@ asset ActionRequest identified by requestId {
 
 transaction SetUpDemo{
   o Double grantBalance
+}
+
+transaction AwardFunds{
+  o NewAward[] awards
 }
 
 transaction CreateGrantee {
